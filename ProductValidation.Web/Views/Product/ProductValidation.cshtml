@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<!DOCTYPE html>
+
+@using ProductValidation.Model
+
+@model ProductValidateModel
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProductMangement</title>
+</head>
+<body>
+    @using (Html.BeginForm("ProductValidation", "Product", FormMethod.Post))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Product Validation</h3>
+                    <hr />
+                </div>
+            </div>
+            <div class ="row">
+                <div class="col-sm-12">
+                <form> 
+                    <div class="form-group">
+                        <div class="col-sm-8">        
+                            @Html.TextBoxFor(a => a.FilePath, new { placeholder = "Enter FilePath to Process", @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.FilePath, "", new { @class= "text-danger"})
+                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input id="btnSubmit" type="submit" value="Process File" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <div class ="row"> 
+                <div class="col-sm-12">  
+                    @if (@ViewBag.Message != null)  
+                    {  
+                        <div>  
+                            @ViewBag.Message  
+                        </div>  
+                    }
+                </div>
+            </div>             
+        </div>
+    }
+</body>
+</html>
